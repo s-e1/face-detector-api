@@ -4,7 +4,7 @@ const cors = require('cors');
 const { handleRegister } = require('./controllers/register');
 const { handleSignin } = require('./controllers/signin');
 const { handleProfile } = require('./controllers/profile');
-const { handleImage } = require('./controllers/image');
+const { handleImage, handleApiCall } = require('./controllers/image');
 
 const db = require('knex')({
     client: 'pg',
@@ -27,6 +27,7 @@ app.post('/register', (req, res) => handleRegister(req, res, db, bcrypt, saltRou
 app.post('/signin', (req, res) => handleSignin(req, res, db, bcrypt));
 app.get('/profile/:id', (req, res) => handleProfile(req, res, db));
 app.put('/image', (req, res) => handleImage(req, res, db));
+app.post('/imageurl', (req, res) => handleApiCall(req, res));
 
 app.listen(3001, () => {
     console.log('app is running at port 3001');
