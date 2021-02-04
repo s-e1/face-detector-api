@@ -6,15 +6,34 @@ const { handleSignin } = require('./controllers/signin');
 const { handleProfile } = require('./controllers/profile');
 const { handleImage, handleApiCall } = require('./controllers/image');
 
+// const { Client } = require('pg');
+
+// const client = new Client({
+//     connectionString: process.env.DATABASE_URL,
+//     ssl: {
+//         rejectUnauthorized: false
+//     }
+// });
+
+// client.connect();
+
 const db = require('knex')({
     client: 'pg',
-    connection: {
-        host: '127.0.0.1',
-        user: 'postgres',
-        password: 'test',
-        database: 'face_detector'
+    connectionString: process.env.DATABASE_URL,
+    ssl: {
+        rejectUnauthorized: false
     }
 });
+
+// const db = require('knex')({
+//     client: 'pg',
+//     connection: {
+//         host: '127.0.0.1',
+//         user: 'postgres',
+//         password: 'test',
+//         database: 'face_detector'
+//     }
+// });
 const saltRounds = 10;
 
 const app = express();
