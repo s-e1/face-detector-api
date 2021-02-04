@@ -17,14 +17,33 @@ const { handleImage, handleApiCall } = require('./controllers/image');
 
 // client.connect();
 
-const db = require('knex')({
-    client: 'pg',
-    connection: {
+// const db = require('knex')({
+//     client: 'pg',
+//     connection: {
+//         connectionString: process.env.DATABASE_URL,
+//         ssl: {
+//             rejectUnauthorized: false
+//         }
+//     }
+// });
+if (process.env.DATABASE_URL) {
+    var connection = {
         connectionString: process.env.DATABASE_URL,
         ssl: {
             rejectUnauthorized: false
         }
     }
+} else {
+    var connection = {
+        host: '127.0.0.1',
+        user: 'postgres',
+        password: 'test',
+        database: 'face_detector'
+    }
+}
+const db = require('knex')({
+    client: 'pg',
+    connection
 });
 
 // const db = require('knex')({
