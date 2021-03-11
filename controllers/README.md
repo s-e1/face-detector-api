@@ -1,1 +1,0 @@
-The frontend is in https://github.com/s-e1/face-detector-heroku .
